@@ -22,4 +22,8 @@ class VideosChannel < ApplicationCable::Channel
   def add_video(data)
     ActionCable.server.broadcast("channel_#{@channel.id}", data)
   end
+
+  def send_message(data)
+    ActionCable.server.broadcast("channel_#{@channel.id}", data)
+  end
 end
