@@ -18,4 +18,8 @@ class VideosChannel < ApplicationCable::Channel
     ActionCable.server.broadcast("channel_#{@channel.id}", data)
     @channel.update(time: data["time"].to_f, playlist_index: data["playlist_index"].to_i, state: data["state"].to_i)
   end
+
+  def add_video(data)
+    ActionCable.server.broadcast("channel_#{@channel.id}", data)
+  end
 end

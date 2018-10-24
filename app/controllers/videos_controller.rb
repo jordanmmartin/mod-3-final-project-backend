@@ -18,7 +18,7 @@ class VideosController < ApplicationController
     @video = Video.new(video_params)
 
     if @video.save
-      render json: @video, status: :created, location: @video
+      render json: @video.channel, status: :created, location: @video
     else
       render json: @video.errors, status: :unprocessable_entity
     end
