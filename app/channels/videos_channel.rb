@@ -10,10 +10,6 @@ class VideosChannel < ApplicationCable::Channel
     stop_all_streams
   end
 
-  # def receive(data)
-  #   get_current_video
-  # end
-
   def sync_videos(data)
     ActionCable.server.broadcast("channel_#{@channel.id}", data)
     @channel.update(time: data["time"].to_f, playlist_index: data["playlist_index"].to_i, state: data["state"].to_i)
@@ -22,6 +18,7 @@ class VideosChannel < ApplicationCable::Channel
   def add_video(data)
     ActionCable.server.broadcast("channel_#{@channel.id}", data)
   end
+
 
   def send_message(data)
     ActionCable.server.broadcast("channel_#{@channel.id}", data)
