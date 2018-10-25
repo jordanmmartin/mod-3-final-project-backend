@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :channel_subscriptions
   resources :messages
   mount ActionCable.server => '/cable'
   
