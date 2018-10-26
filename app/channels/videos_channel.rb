@@ -4,7 +4,7 @@ class VideosChannel < ApplicationCable::Channel
     stop_all_streams
     @channel = Channel.find(params[:id])
     @current_user = User.find(params[:userid])
-    @channel_subscription = ChannelSubscription.create(user: @current_user, channel: @channel)
+    @channel_subscription = ChannelSubscription.find_or_create_by(user: @current_user, channel: @channel)
     stream_from "channel_#{@channel.id}"
     delegate_host
   end
